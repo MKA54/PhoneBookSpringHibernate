@@ -6,6 +6,7 @@ import ru.academits.model.Contact;
 import ru.academits.model.ContactValidation;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ContactService {
