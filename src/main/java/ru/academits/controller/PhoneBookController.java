@@ -10,6 +10,7 @@ import ru.academits.service.ContactService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -43,7 +44,24 @@ public class PhoneBookController {
     @RequestMapping(value = "deleteContact", method = RequestMethod.POST)
     @ResponseBody
     public void deleteContact(@RequestBody String id) {
+        logger.info("called method deleteContact, id = " + id);
+
         int ids = Integer.parseInt(id);
         contactService.remove(ids);
+    }
+
+    @RequestMapping(value = "deleteContacts", method = RequestMethod.POST)
+    @ResponseBody
+    public void deleteContacts(@RequestBody String arrayIds) {
+        logger.info("called method deleteContacts, arrayIds = " + arrayIds);
+        arrayIds = arrayIds.substring(1, arrayIds.length() - 1);
+
+        int[] indexList = Arrays.stream(arrayIds.split(","))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        for (int i : indexList) {
+            contactService.remove(i);
+        }
     }
 }

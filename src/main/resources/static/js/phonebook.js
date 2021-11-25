@@ -81,6 +81,26 @@ new Vue({
                 self.loadData();
             });
         },
+        deleteContacts: function () {
+            var selectedContacts = [];
+
+            for (var i = 0; i < this.rows.length; i++) {
+                if (this.rows[i].checked === true) {
+                    selectedContacts.push(this.rows[i].id)
+                }
+            }
+
+            var self = this;
+
+            $.ajax({
+                type: "POST",
+                url: "/phoneBook/rpc/api/v1/deleteContacts",
+                contentType: "application/json",
+                data: JSON.stringify(selectedContacts)
+            }).always(function () {
+                self.loadData();
+            });
+        },
         loadData: function () {
             var self = this;
 
