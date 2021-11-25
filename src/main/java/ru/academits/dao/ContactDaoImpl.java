@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class ContactDaoImpl extends GenericDaoImpl<Contact, Long> implements ContactDao {
@@ -17,7 +18,9 @@ public class ContactDaoImpl extends GenericDaoImpl<Contact, Long> implements Con
 
     @Override
     public List<Contact> getAllContacts() {
-        return findAll();
+        return findAll().stream()
+                .filter(c -> !c.isRemove())
+                .collect(Collectors.toList());
     }
 
     @Override

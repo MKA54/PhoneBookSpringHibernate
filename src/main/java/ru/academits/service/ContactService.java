@@ -60,7 +60,8 @@ public class ContactService {
     public void remove(int id) {
         for (Contact contact: getAllContacts()){
             if (contact.getId() == id){
-                contactDao.remove(contact);
+                contact.setRemove(true);
+                contactDao.update(contact);
                 return;
             }
         }

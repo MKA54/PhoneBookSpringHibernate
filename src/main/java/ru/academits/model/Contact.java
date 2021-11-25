@@ -18,6 +18,16 @@ public class Contact {
     @Column
     private String phone;
 
+    @Column
+    private boolean isRemove = false;
+
+    public boolean isRemove() {
+        return isRemove;
+    }
+
+    public void setRemove(boolean remove) {
+        isRemove = remove;
+    }
 
     public Long getId() {
         return id;
