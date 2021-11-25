@@ -9,5 +9,4 @@ public class PhoneBookSpringHibernateApplication {
     public static void main(String[] args) {
         SpringApplication.run(PhoneBookSpringHibernateApplication.class, args);
     }
-
 }
