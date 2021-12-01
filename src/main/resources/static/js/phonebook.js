@@ -69,19 +69,31 @@ new Vue({
             self.phone = "";
             self.validation = false;
         },
-        deleteContact: function (id) {
+        removeContact: function (id) {
             var self = this;
 
             $.ajax({
                 type: "POST",
-                url: "/phoneBook/rpc/api/v1/deleteContact",
+                url: "/phoneBook/rpc/api/v1/removeContact",
                 contentType: "application/json",
                 data: JSON.stringify(id)
             }).always(function () {
                 self.loadData();
             });
         },
-        deleteContacts: function () {
+        call: function (id) {
+            var self = this;
+
+            $.ajax({
+                type: "POST",
+                url: "/phoneBook/rpc/api/v1/call",
+                contentType: "application/json",
+                data: JSON.stringify(id)
+            }).always(function () {
+                self.loadData();
+            });
+        },
+        removeContacts: function () {
             var selectedContacts = [];
 
             for (var i = 0; i < this.rows.length; i++) {
@@ -94,7 +106,7 @@ new Vue({
 
             $.ajax({
                 type: "POST",
-                url: "/phoneBook/rpc/api/v1/deleteContacts",
+                url: "/phoneBook/rpc/api/v1/removeContacts",
                 contentType: "application/json",
                 data: JSON.stringify(selectedContacts)
             }).always(function () {

@@ -58,13 +58,27 @@ public class ContactService {
     }
 
     public void remove(int id) {
-        for (Contact contact: getAllContacts()){
-            if (contact.getId() == id){
+        for (Contact contact : getAllContacts()) {
+            if (contact.getId() == id) {
                 contact.setRemove(true);
                 contactDao.update(contact);
+
                 return;
             }
         }
+    }
+
+    public Contact getContact(int id){
+        Contact contact = null;
+
+        for (Contact c : getAllContacts()) {
+            if (c.getId() == id) {
+                contact = c;
+                break;
+            }
+        }
+
+        return contact;
     }
 
     public List<Contact> getAllContacts() {
