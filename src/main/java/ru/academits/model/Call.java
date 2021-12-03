@@ -1,35 +1,42 @@
 package ru.academits.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
+import java.sql.Timestamp;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "calls")
 public class Call {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private int contactId;
+    @Column(name = "contactId")
+    private Long contactId;
 
-    @ManyToOne
-    @JoinColumn(name = "contactId")
-    private Contact contact;
+    @Column(name = "call_date")
+    private Timestamp callDate;
 
-    public int getContactId() {
+    public Timestamp getCallDate() {
+        return callDate;
+    }
+
+    public void setCallDate(Timestamp callDate) {
+        this.callDate = callDate;
+    }
+
+    public Long getContactId() {
         return contactId;
     }
 
-    public void setContactId(int contactId) {
+    public void setContactId(Long contactId) {
         this.contactId = contactId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

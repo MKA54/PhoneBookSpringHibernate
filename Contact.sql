@@ -4,20 +4,22 @@ USE Phone_Book;
 
 CREATE TABLE Contact (
 	id int auto_increment primary key,
-	lastName varchar(255),
-	firstName varchar(255),
-	phone varchar(255),
-    isRemove boolean
+	lastName varchar(255) not null,
+	firstName varchar(255) not null,
+	phone varchar(255) not null,
+    isRemove boolean not null
 );
 
 SELECT * FROM Contact;
 
 CREATE TABLE calls (
 	id int auto_increment primary key,
-    call_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	contactId INT,
+    call_date DATETIME not null,
+	contactId INT not null,
     FOREIGN KEY (contactId) REFERENCES Contact(id)
 );
+
+SELECT * FROM calls;
 
 drop table contact;
 

@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 
+@Transactional
 public class CallGenericDaoImpl<T, PK extends Serializable> implements CallGenericDao<T, PK> {
     @PersistenceContext
     protected EntityManager entityManager;
@@ -14,9 +15,9 @@ public class CallGenericDaoImpl<T, PK extends Serializable> implements CallGener
 
     public CallGenericDaoImpl(Class<T> type) {
         this.clazz = type;
+
     }
 
-    @Transactional
     @Override
     public void create(T obj) {
         entityManager.persist(obj);

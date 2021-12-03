@@ -1,23 +1,12 @@
 package ru.academits.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "contact")
 public class Contact {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column
@@ -31,14 +20,6 @@ public class Contact {
 
     @Column
     private boolean isRemove = false;
-
-    @OneToMany(mappedBy="contact");
-    private List<Call> calls = new ArrayList<>();
-
-    public void addCall(Call call){
-        calls.add(call);
-        call.setContact(this);
-    }
 
     public boolean isRemove() {
         return isRemove;
@@ -81,7 +62,7 @@ public class Contact {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return lastName + " " + firstName + " " + phone;
     }
 }

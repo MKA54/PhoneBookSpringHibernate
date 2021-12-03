@@ -68,7 +68,7 @@ public class ContactService {
         }
     }
 
-    public Contact getContact(int id){
+    public Contact getContact(int id) {
         Contact contact = null;
 
         for (Contact c : getAllContacts()) {

@@ -65,7 +65,7 @@ public class PhoneBookController {
         Contact contact = contactService.getContact(ids);
 
 
-       callService.call(contact);
+        callService.addCall(contact);
     }
 
     @RequestMapping(value = "removeContacts", method = RequestMethod.POST)
